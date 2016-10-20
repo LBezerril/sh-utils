@@ -11,7 +11,7 @@ echolor [-n] "String" COLOR
 
 **Exemplo**
 ```shell
-echolor -n "Texto em \n\t verde claro" LIGHTGREEN
+echolor "Texto em verde claro" LIGHTGREEN
 ```
 
 **Opções**
