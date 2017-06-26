@@ -4,37 +4,37 @@
 #                                                                             #
 #                                   echolor                                   #
 #                                                                             #
-#  Descrição:                                                                 #
-#    Colore uma mensagem de acordo com a cor informada.                       #
+#  Description:                                                               #
+#    Color a message according to informed color.                             #
 #                                                                             #
-#  Uso:                                                                       #
+#  How to use:                                                                #
 #    echolor [-n] "String" COLOR                                              #
 #                                                                             #
-#  Exemplo:                                                                   #
-#    echolor "Texto em verde claro" LIGHTGREEN                                #
+#  Example:                                                                   #
+#    echolor "Light green text" LIGHTGREEN                                    #
 #                                                                             #
-#  Opções:                                                                    #
+#  Options:                                                                   #
 #    COLOR                                                                    #
-#      Uma das seguintes cores: BLACK, BLUE, CYAN, DARKGRAY, GREEN,           #
+#      One of the following colors: BLACK, BLUE, CYAN, DARKGRAY, GREEN,       #
 #      LIGHTBLUE, LIGHTCYAN, LIGHTGRAY, LIGHTGREEN, LIGHTPURPLE, LIGHTRED,    #
-#      ORANGE, PURPLE, RED, WHITE ou YELLOW. Se outro valor for informado, a  #
-#      string não será colorida.                                              #
+#      ORANGE, PURPLE, RED, WHITE or YELLOW. If another value is informed,    #
+#      the string will not be colored.                                        #
 #                                                                             #
 #    -n                                                                       #
-#      Evita quebra de linha.                                                 #
+#      Do not output the trailing newline.                                    #
 #                                                                             #
 #  WWW:                                                                       #
 #    github.com/lbezerril/sh-utils/blob/master/echolor                        #
-#    * Esse script faz parte de um projeto de utilitários em POSIX Shell      #
+#    * This script is part of a utilities project in POSIX Shell              #
 #      (github.com/lbezerril/sh-utils)                                        #
 #                                                                             #
-#  Documentação:                                                              #
+#  Documentation:                                                             #
 #    github.com/lbezerril/sh-utils/tree/master/echolor                        #
 #                                                                             #
-#  Autor:                                                                     #
+#  Author:                                                                    #
 #    lbezerril (github.com/lbezerril)                                         #
 #                                                                             #
-#  Licença:                                                                   #
+#  License:                                                                   #
 #    GNU GPL v3 (github.com/lbezerril/sh-utils/blob/master/LICENSE)           #
 #                                                                             #
 #  This POSIX sh is following the "posix-guidelines" version="1.0.0" {        #
@@ -49,8 +49,8 @@ if [ -z "$2" ]; then
   exit 1
 fi
 
-# Se houver o terceiro argumento, e o primeiro for "-n", atribui em uma
-# variável a opção para ser usada no comando echo.
+# If there is the third argument, and the first one is "-n", assign to a
+# variable the option to be used in the echo command.
 if [ ! -z "$3" ] && [ "$1" = "-n" ]; then
   option="-n"
   shift
@@ -58,7 +58,7 @@ fi
 
 NC='\033[0m'
 
-# Atribui o código da cor informada.
+# Assigns the color code informed.
 case "$2" in
   "BLACK")
     color_code='\033[0;30m';;
