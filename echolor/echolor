@@ -24,31 +24,35 @@
 #      Evita quebra de linha.                                                 #
 #                                                                             #
 #  WWW:                                                                       #
-#    github.com/LBezerril/sh-utils/blob/master/echolor                        #
+#    github.com/lbezerril/sh-utils/blob/master/echolor                        #
 #    * Esse script faz parte de um projeto de utilitários em POSIX Shell      #
-#      (github.com/LBezerril/sh-utils)                                        #
+#      (github.com/lbezerril/sh-utils)                                        #
 #                                                                             #
 #  Documentação:                                                              #
-#    github.com/LBezerril/sh-utils#echolor                                    #
+#    github.com/lbezerril/sh-utils/tree/master/echolor                        #
 #                                                                             #
 #  Autor:                                                                     #
-#    LBezerril (github.com/LBezerril)                                         #
+#    lbezerril (github.com/lbezerril)                                         #
 #                                                                             #
 #  Licença:                                                                   #
-#    GNU GPL v3 (github.com/LBezerril/sh-utils/blob/master/LICENSE)           #
+#    GNU GPL v3 (github.com/lbezerril/sh-utils/blob/master/LICENSE)           #
+#                                                                             #
+#  This POSIX sh is following the "posix-guidelines" version="1.0.0" {        #
+#    <https://github.com/lbezerril/posix-guidelines/tree/1.0.0>               #
+#  }                                                                          #
 #                                                                             #
 #                                                                             #
 ###############################################################################
 
 if [ -z "$2" ]; then
-  /usr/bin/env echo "Use: echolor [-n] \"String\" COLOR"
+  echo "Use: echolor [-n] \"String\" COLOR"
   exit 1
 fi
 
 # Se houver o terceiro argumento, e o primeiro for "-n", atribui em uma
 # variável a opção para ser usada no comando echo.
 if [ ! -z "$3" ] && [ "$1" = "-n" ]; then
-  option="n"
+  option="-n"
   shift
 fi
 
@@ -92,4 +96,4 @@ case "$2" in
     color_code=$NC;;
 esac
 
-/usr/bin/env echo -e${option} "${color_code}${1}${NC}"
+echo ${option} "${color_code}${1}${NC}"
