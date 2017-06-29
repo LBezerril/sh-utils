@@ -1,0 +1,104 @@
+#!/bin/sh
+
+###############################################################################
+#                                                                             #
+#                               file_validator                                #
+#                                                                             #
+#  Description:                                                               #
+#    Provides sourced functions to validate a given file.                     #
+#                                                                             #
+#  How to use:                                                                #
+#    . file_validator                                                         #
+#    __file_validator _validator "file" "Success message" "Error message"     #
+#                                                                             #
+#  Example:                                                                   #
+#    . file_validator                                                         #
+#    __file_validator _exists "foo.txt" "File exists." "File does not exist!" #
+#                                                                             #
+#  Available validation functions:                                            #
+#    _validate                                                                #
+#      Validate if the file exists                                            #
+#                                                                             #
+#    _exists                                                                  #
+#      Validate if the file exists                                            #
+#                                                                             #
+#    _is_regular                                                              #
+#      Valid if the file is regular                                           #
+#                                                                             #
+#    _is_readable                                                             #
+#      Valid if the file is readable                                          #
+#                                                                             #
+#    _has_content                                                             #
+#      Validate if the file has content                                       #
+#                                                                             #
+#  Depends:                                                                   #
+#    echolor <github.com/lbezerril/sh-utils/tree/master/echolor>              #
+#                                                                             #
+#  WWW:                                                                       #
+#    github.com/lbezerril/sh-utils/blob/master/file_validator                 #
+#    * This script is part of a utilities project in POSIX Shell              #
+#      (github.com/lbezerril/sh-utils)                                        #
+#                                                                             #
+#  Documentation:                                                             #
+#    github.com/lbezerril/sh-utils/tree/master/file_validator                 #
+#                                                                             #
+#  Author:                                                                    #
+#    lbezerril (github.com/lbezerril)                                         #
+#                                                                             #
+#  License:                                                                   #
+#    GNU GPL v3 (github.com/lbezerril/sh-utils/blob/master/LICENSE)           #
+#                                                                             #
+#  This POSIX sh is following the "posix-guidelines" version="1.0.0" {        #
+#    <https://github.com/lbezerril/posix-guidelines/tree/1.0.0>               #
+#  }                                                                          #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+__file_validator() (
+  # $1: Validator function to be called
+  # $2: File to be validated
+  # $3: Success message
+  # $4: Error message
+
+  FILE="$2"
+
+  _validate() {
+    # $1: Test option
+    # $2: Success message
+    # $3: Error message
+
+    if [ -$1 "$FILE" ]; then
+      echolor "$2" LIGHTGREEN
+    else
+      echolor "$3" LIGHTRED 1>&2
+      return 1
+    fi
+  }
+
+  _exists() {
+    # $2: Success message
+    # $3: Error message
+    _validate e "$2" "$3"
+  }
+
+  _is_regular() {
+    # $2: Success message
+    # $3: Error message
+    _validate f "$2" "$3"
+  }
+
+  _is_readable() {
+    # $2: Success message
+    # $3: Error message
+    _validate r "$2" "$3"
+  }
+
+  _has_content() {
+    # $2: Success message
+    # $3: Error message
+    _validate s "$2" "$3"
+  }
+
+  "$@"
+)
