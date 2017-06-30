@@ -17,7 +17,7 @@
 #                                                                             #
 #  Available validation functions:                                            #
 #    _validate                                                                #
-#      Validate if the file exists                                            #
+#      Custom validation                                                      #
 #                                                                             #
 #    _exists                                                                  #
 #      Validate if the file exists                                            #
@@ -63,6 +63,8 @@ __file_validator() (
 
   FILE="$2"
 
+  set -- "$1" "$3" "$4"
+
   _validate() {
     # $1: Test option
     # $2: Success message
@@ -77,27 +79,31 @@ __file_validator() (
   }
 
   _exists() {
-    # $2: Success message
-    # $3: Error message
-    _validate e "$2" "$3"
+    # $1: Success message
+    # $2: Error message
+
+    _validate e "$1" "$2"
   }
 
   _is_regular() {
-    # $2: Success message
-    # $3: Error message
-    _validate f "$2" "$3"
+    # $1: Success message
+    # $2: Error message
+
+    _validate f "$1" "$2"
   }
 
   _is_readable() {
-    # $2: Success message
-    # $3: Error message
-    _validate r "$2" "$3"
+    # $1: Success message
+    # $2: Error message
+
+    _validate r "$1" "$2"
   }
 
   _has_content() {
-    # $2: Success message
-    # $3: Error message
-    _validate s "$2" "$3"
+    # $1: Success message
+    # $2: Error message
+
+    _validate s "$1" "$2"
   }
 
   "$@"

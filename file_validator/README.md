@@ -17,7 +17,7 @@ __file_validator _exists "foo.txt" "File exists." "File does not exist!"
 
 `_validate`
 
-Validate if the file exists
+Custom validation
 
 `_exists`
 
